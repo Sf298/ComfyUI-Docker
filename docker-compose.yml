@@ -1,0 +1,22 @@
+services:
+    comfyui:
+        container_name: comfyui-amd
+        devices:
+            - /dev/kfd
+            - /dev/dri
+        group_add:
+            - video
+        volumes:
+            - ./comfyui/models:/workspace/ComfyUI/models
+            - ./comfyui/output:/workspace/ComfyUI/output
+            - ./comfyui/input:/workspace/ComfyUI/input
+            - ./comfyui/custom_nodes:/workspace/ComfyUI/custom_nodes
+        ports:
+            - ${PORT:-8188}:8188
+        build: .
+        restart: ${RESTART:-unless-stopped}
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8188"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
