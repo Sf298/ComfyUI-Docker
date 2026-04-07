@@ -7,10 +7,10 @@ services:
         group_add:
             - video
         volumes:
-            - ./comfyui/models:/workspace/ComfyUI/models
-            - ./comfyui/output:/workspace/ComfyUI/output
-            - ./comfyui/input:/workspace/ComfyUI/input
-            - ./comfyui/custom_nodes:/workspace/ComfyUI/custom_nodes
+            - ./data/models:/workspace/ComfyUI/models
+            - ./data/output:/workspace/ComfyUI/output
+            - ./data/input:/workspace/ComfyUI/input
+            - ./data/custom_nodes:/workspace/ComfyUI/custom_nodes
         ports:
             - ${PORT:-8188}:8188
         build: .
